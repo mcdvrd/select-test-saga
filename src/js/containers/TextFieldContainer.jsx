@@ -9,7 +9,7 @@ import selectFieldValue from '../selectors/selectFieldValue';
 
 const mapStateToProps = (state, props) => {
     return {
-        value: selectFieldValue(state, props.fieldId)
+        value: selectFieldValue(state, props.fieldId).value
     };
 };
 

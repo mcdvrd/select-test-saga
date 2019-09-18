@@ -6,10 +6,10 @@
 //
 
 import  { connect } from 'react-redux';
-import {selectFields} from '../selectors/selectFields';
+// import {selectFields} from '../selectors/selectFields';
 import {selectFieldIds} from '../selectors/selectFieldIds';
-
 import MainView2 from '../components/MainView2';
+import {createField} from '../actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -19,10 +19,16 @@ const mapStateToProps = (state) => {
     };
 };
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createField: (fieldId, fieldName, initialValue) => dispatch(createField(fieldId, fieldName, initialValue))
+    };
+  };
+
 
 const MainView2Container = connect (
     mapStateToProps,
-    {}
+    mapDispatchToProps
 )(MainView2);
 
 export default MainView2Container;

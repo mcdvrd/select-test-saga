@@ -3,8 +3,9 @@
 //
 
 import { 
-  UPDATE_FIELD_ONE, UPDATE_FIELD
+  UPDATE_FIELD_ONE, UPDATE_FIELD, CREATE_FIELD
 } from "../constants/action-types";
+import { isTemplateElement } from "@babel/types";
 
 
 
@@ -13,7 +14,7 @@ const initialState =  {
    {
       id: 1,
       name: "fieldOne",
-      value: "Initial Value1"
+      value: ""
    },
    {
       id: 2,
@@ -23,7 +24,7 @@ const initialState =  {
    {
       id: 3,
       name: "fieldThree",
-      value: "Initial Value3"
+      value: ""
    }],
 
    fieldIds: [1, 2, 3],
@@ -61,6 +62,24 @@ function rootReducer(state = initialState, action) {
           });
 
          // return state;
+        }
+
+        case CREATE_FIELD: {
+
+         console.log("CreateField:reducer:called:action " + JSON.stringify(action));
+
+         let found = state.fieldIds.find(id => {
+               return action.fieldId === id;
+         });  
+
+         if (found === undefined) {
+              return Object.assign({}, state, {
+                  fieldIds: state.fieldIds.concat(action.fieldId),
+                  fields: state.fields.concat({id: action.fieldId, name: action.fieldName, value: action.value})
+               })
+            } else {
+               return state;
+            }
         }
      
         default:

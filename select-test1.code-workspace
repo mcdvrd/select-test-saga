@@ -1,10 +1,10 @@
 {
 	"folders": [
 		{
+			"path": "/Users/matthewdillon/dev/vs-code-test"
+		},
+		{
 			"path": "."
 		}
-	],
-	"settings": {
-		"jshint.options": {"esversion": 6},
-	}
+	]
 }
