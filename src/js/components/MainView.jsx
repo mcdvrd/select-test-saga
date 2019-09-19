@@ -5,15 +5,25 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
 import TextFieldContainer from '../containers/TextFieldContainer';
 import TextFieldContainerSimple from '../containers/TextFieldContainerSimple';
 import Button from '@material-ui/core/Button';
 
+const useStyles = makeStyles(theme => ({
+  button: {
+    margin: theme.spacing(1)
+  },
+  input: {
+    display: 'none',
+  },
+}));
 
 const MainView = (props) => {
+
+  const classes = useStyles();
 
     const {
       fieldIds,
@@ -64,7 +74,8 @@ const MainView = (props) => {
     
     return (
         <div>
-            <h4>MainView2</h4>
+            <h2>select-test1</h2>
+            <h4>Main View</h4>
         <Grid container >
           <Grid item xs={12} >
              {textComponents}
@@ -77,8 +88,9 @@ const MainView = (props) => {
                 disabled={false}
                 />
           </Grid>
+          <div style={{padding: '25px'}}></div>
           <Grid item xs={12} >
-            <Button onClick={onCreateField}>Create Field</Button>
+            <Button color='secondary' className={classes.button} onClick={onCreateField} variant="contained">Create Field</Button>
           </Grid>
 			</Grid>
         </div>

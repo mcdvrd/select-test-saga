@@ -42,7 +42,7 @@ function rootReducer(state = initialState, action) {
 
         case UPDATE_FIELD_ONE: {
 
-          // try to update ONLY filedOne
+          // try to update ONLY fieldOne
           return Object.assign({}, state, {
             fieldOne: Object.assign({}, { name: action.fieldName, value: action.value}) 
           });

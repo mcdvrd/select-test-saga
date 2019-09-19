@@ -56,15 +56,14 @@ const TextFieldControl = (props) => {
                
                 <div >
                     <TextField key={fieldName} 
-                    id={sid}
-                    disabled={disabled}
-                    label={fieldProps.name}
-                    placeholder={fieldProps.name}
-                    defaultValue={value}
-                    className={classes.textField}
-                    style={{float: 'left'}}
-                    margin="normal"
-                    onChange={(e) => {handleChange(e, fieldId)}}
+                      id={sid}
+                      disabled={disabled}
+                      label={fieldProps.name}
+                      placeholder={fieldProps.name}
+                      defaultValue={value}
+                      className={classes.textField}
+                      margin="normal"
+                      onChange={(e) => {handleChange(e, fieldId)}}
                     />
                 </div>
             );
