@@ -3,7 +3,7 @@
 //
 import  { connect } from 'react-redux';
 
-import { updateField } from '../actions/index';
+import { updateField, updateFieldOne } from '../actions/index';
 import TextFieldControl from '../controls/TextFieldControl';
 import selectFieldValue from '../selectors/selectFieldValue';
 
@@ -15,7 +15,8 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateField: (fieldId, value) => dispatch(updateField(fieldId, value))
+        updateField: (fieldId, value) => dispatch(updateField(fieldId, value)),
+        updateFieldOne: (value) => dispatch(updateFieldOne(value))
     };
   };
 

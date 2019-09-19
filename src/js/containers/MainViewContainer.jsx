@@ -8,7 +8,7 @@
 import  { connect } from 'react-redux';
 // import {selectFields} from '../selectors/selectFields';
 import {selectFieldIds} from '../selectors/selectFieldIds';
-import MainView2 from '../components/MainView2';
+import MainView from '../components/MainView';
 import {createField} from '../actions';
 
 const mapStateToProps = (state) => {
@@ -26,11 +26,11 @@ const mapDispatchToProps = (dispatch) => {
   };
 
 
-const MainView2Container = connect (
+const MainViewContainer = connect (
     mapStateToProps,
     mapDispatchToProps
-)(MainView2);
+)(MainView);
 
-export default MainView2Container;
+export default MainViewContainer;
 
 

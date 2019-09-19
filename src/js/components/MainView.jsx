@@ -1,77 +1,93 @@
 /////////////////////////////////////////
-// MainView.jsx
+// MainView2.jsx
+// selector test
+//
 
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Grid from '@material-ui/core/Grid';
+
 import TextFieldContainer from '../containers/TextFieldContainer';
 import TextFieldContainerSimple from '../containers/TextFieldContainerSimple';
-
+import Button from '@material-ui/core/Button';
 
 
 const MainView = (props) => {
 
+    const {
+      fieldIds,
+      createField
+    } = props;
 
-    const fieldPropsA =  {
-		name: "field[1]",
-		description: "Field Title",
-		type: 'standard-dense',
-		style: {float: 'left', width: '50%'},
-		section: 1
-    };
+    const onCreateField = () => {
 
-    const fieldPropsB =  {
-		name: "field[2]",
-		description: "Field Title",
-		type: 'standard-dense',
-		style: {float: 'left', width: '50%'},
-		section: 1
-    };
+      console.log("onCreate field called");
+      //Creates a new field in the store
+      // for now, just use the length and add one. 
+      // ...Very simple.
+      createField(fieldIds.length + 1, "New Field", "Some initial value");
+    
+    }
 
-    const fieldPropsC =  {
-		name: "field[3]",
-		description: "Field Title",
-		type: 'standard-dense',
-		style: {float: 'left', width: '50%'},
-		section: 1
-    };
-
+    // this one writes directly to the store 
+    // in iuts own field.
     const fieldProps2 =  {
-		name: "direct to FieldOne",
-		description: "Field Title",
-		type: 'standard-dense',
-		style: {float: 'left', width: '50%'},
-		section: 1
+      name: "direct to FieldOne",
+      description: "Field Title",
+      type: 'standard-dense',
+      style: {float: 'left', width: '50%'},
+      section: 1
     };
+
+    // Create new components based on the fields[] in the store
+    const textComponents = fieldIds.map((fieldId) => {
+
+      const controlName = "Field-" + fieldId;
+
+      const fieldProps = {
+        name: controlName,
+        description: "field",
+        type: 'standard-dense',
+      };
+
+      return (
+        <Grid item xs={12} key={fieldId}>
+          <TextFieldContainer 
+            fieldId={fieldId}
+            fieldProps={fieldProps}
+            disabled={false}
+            />
+        </Grid>
+      );
+    });
     
     return (
         <div>
-            <h4>MainView</h4>
-
-            <Grid item xs={12} key={fieldName}>
-             <TextFieldContainer 
-                fieldId={1}
-                fieldProps={fieldPropsA}
-                enabled={false}
-                />
-            <TextFieldContainer 
-                fieldId={2}
-                fieldProps={fieldPropsB}
-                enabled={false}
-                />
-            <TextFieldContainer 
-                fieldId={3}
-                fieldProps={fieldPropsC}
-                enabled={false}
-                />
+            <h4>MainView2</h4>
+        <Grid container >
+          <Grid item xs={12} >
+             {textComponents}
+          </Grid>
+          <Grid item xs={12} >
             <TextFieldContainerSimple 
-                fieldId="FieldOne"
+                fieldId={1}
                 fieldName={"FieldOne"}
                 fieldProps={fieldProps2}
-                enabled={false}
+                disabled={false}
                 />
+          </Grid>
+          <Grid item xs={12} >
+            <Button onClick={onCreateField}>Create Field</Button>
+          </Grid>
 			</Grid>
         </div>
     );
 }
+
+MainView.propTypes = {
+    fieldIds: PropTypes.array.isRequired,
+    createField: PropTypes.func.isRequired
+};
 
 export default MainView;

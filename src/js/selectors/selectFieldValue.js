@@ -2,7 +2,7 @@
 // selectors/selectFieldValue
 //
 
-import { createSelector } from 'reselect';
+// import { createSelector } from 'reselect';
 
 // only works for CONSECUTIVE ids
 // const selectFieldValue = (state, fieldId) => state.fields[fieldId-1].value;

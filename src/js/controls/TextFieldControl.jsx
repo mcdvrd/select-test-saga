@@ -2,6 +2,7 @@
 // controls/TextFieldControl.jsx
 // 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -27,18 +28,18 @@ const TextFieldControl = (props) => {
     
     const {
    
-       value,
-      fieldId,
+        value,
+        fieldId,
         fieldProps,
         fieldName,
         classes,
-        enabled,
+        disabled,
         updateField,
         updateFieldOne
     } = props;
 
-    console.log("TextFieldControl Value: "  + JSON.stringify(value));
-    console.log("TextFieldControl fieldId: " + fieldId);
+  //  console.log("TextFieldControl Value: "  + JSON.stringify(value));
+  //  console.log("TextFieldControl fieldId: " + fieldId);
 
     function handleChange(event, fieldId) {
 
@@ -56,7 +57,7 @@ const TextFieldControl = (props) => {
                 <div >
                     <TextField key={fieldName} 
                     id={sid}
-                    disabled={enabled}
+                    disabled={disabled}
                     label={fieldProps.name}
                     placeholder={fieldProps.name}
                     defaultValue={value}
@@ -69,5 +70,14 @@ const TextFieldControl = (props) => {
             );
     }
 }
+
+TextFieldControl.propTypes = {
+  value: PropTypes.string,
+  fieldId: PropTypes.number.isRequired,
+  fieldProps: PropTypes.object.isRequired,
+  disabled: PropTypes.bool.isRequired,
+  updateField: PropTypes.func,
+  updateFieldOne: PropTypes.func
+};
 
 export default withStyles(styles)(TextFieldControl);

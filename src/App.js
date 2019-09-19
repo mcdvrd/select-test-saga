@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
 
-import MainView2Container from './js/containers/MainView2Container';
+import MainViewContainer from './js/containers/MainViewContainer';
 
 function App() {
   return (
     <div className="App">
-     <MainView2Container/>
+     <MainViewContainer/>
     </div>
   );
 }
