@@ -11,6 +11,24 @@ import Grid from '@material-ui/core/Grid';
 import TextFieldContainer from '../containers/TextFieldContainer';
 import TextFieldContainerSimple from '../containers/TextFieldContainerSimple';
 import Button from '@material-ui/core/Button';
+import StyledButton from './StyledButton';
+
+/*
+const StyledButton = withStyles({
+  root: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+  },
+  label: {
+    textTransform: 'capitalize',
+  },
+})(Button);
+*/
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -90,7 +108,25 @@ const MainView = (props) => {
           </Grid>
           <div style={{padding: '25px'}}></div>
           <Grid item xs={12} >
-            <Button color='secondary' className={classes.button} onClick={onCreateField} variant="contained">Create Field</Button>
+            <Button 
+                color='primary' 
+                className={classes.button} 
+                onClick={onCreateField} 
+                variant="contained">Create Field</Button>
+          </Grid>
+          <div style={{padding: '25px'}}></div>
+          <Grid item xs={12} >
+            <StyledButton 
+                color='white' 
+                onClick={onCreateField} 
+                variant="contained">Create Field</StyledButton>
+          </Grid>
+          <div style={{padding: '25px'}}></div>
+          <Grid item xs={12} >
+            <button className="button"
+                color='white' 
+                onClick={onCreateField} 
+                variant="contained">Create Field</button>
           </Grid>
 			</Grid>
         </div>
