@@ -117,16 +117,15 @@ const MainView = (props) => {
           <div style={{padding: '25px'}}></div>
           <Grid item xs={12} >
             <StyledButton 
-                color='white' 
                 onClick={onCreateField} 
-                variant="contained">Create Field</StyledButton>
+                variant="contained">StylizedCreate Field</StyledButton>
           </Grid>
           <div style={{padding: '25px'}}></div>
           <Grid item xs={12} >
-            <button className="button"
-                color='white' 
+            <button className="button -inverted"
+            color="primary"
                 onClick={onCreateField} 
-                variant="contained">Create Field</button>
+                >KP-Button Create Field</button>
           </Grid>
 			</Grid>
         </div>

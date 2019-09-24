@@ -1,5 +1,4 @@
-@import 'styleguide/modern.sccs';
-
+@import "../node_modules/styleguide/styleguide.css";
 
 body {
   margin: 0;
