@@ -6,9 +6,7 @@ import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-
-
-// import classNames from 'classnames';
+//  import KpTextField from './KpTextField';
 
 const styles = theme => ({
     root: {
@@ -53,19 +51,17 @@ const TextFieldControl = (props) => {
                   
         default:
             return (
-               
-                <div >
-                    <TextField key={fieldName} 
-                      id={sid}
-                      disabled={disabled}
-                      label={fieldProps.name}
-                      placeholder={fieldProps.name}
-                      defaultValue={value}
-                      className={classes.textField}
-                      margin="normal"
-                      onChange={(e) => {handleChange(e, fieldId)}}
-                    />
-                </div>
+              <TextField key={fieldName} 
+                id={sid}
+                disabled={disabled}
+                label={fieldProps.name}
+                placeholder={fieldProps.name}
+                defaultValue={value}
+                className={classes.textField}
+                margin="normal"
+                variant='outlined'
+                onChange={(e) => {handleChange(e, fieldId)}}
+              />
             );
     }
 }

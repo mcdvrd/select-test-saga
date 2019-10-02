@@ -12,23 +12,11 @@ import TextFieldContainer from '../containers/TextFieldContainer';
 import TextFieldContainerSimple from '../containers/TextFieldContainerSimple';
 import Button from '@material-ui/core/Button';
 import StyledButton from './StyledButton';
+import KpButton from './KpButton';
 
-/*
-const StyledButton = withStyles({
-  root: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    borderRadius: 3,
-    border: 0,
-    color: 'white',
-    height: 48,
-    padding: '0 30px',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-  },
-  label: {
-    textTransform: 'capitalize',
-  },
-})(Button);
-*/
+import {apiSaga} from '../actions/index'
+
+const Loading = require('react-loading-animation');
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -45,7 +33,13 @@ const MainView = (props) => {
 
     const {
       fieldIds,
-      createField
+      createField,
+      isLoading,
+      sampleData,
+      getData,
+      getDataAsync,
+      fetchDataRequested,
+ //     apiSaga
     } = props;
 
     const onCreateField = () => {
@@ -56,6 +50,17 @@ const MainView = (props) => {
       // ...Very simple.
       createField(fieldIds.length + 1, "New Field", "Some initial value");
     
+    }
+
+    const onGetData = () => {
+      console.log("Sample Data: " + JSON.stringify(sampleData));
+    //  getData(JSON.stringify(sampleData));
+      // set spinner
+      fetchDataRequested();
+
+      // getDataAsync();
+
+     // apiSaga();
     }
 
     // this one writes directly to the store 
@@ -89,47 +94,59 @@ const MainView = (props) => {
         </Grid>
       );
     });
-    
-    return (
-        <div>
-            <h2>select-test1</h2>
-            <h4>Main View</h4>
-        <Grid container >
-          <Grid item xs={12} >
-             {textComponents}
-          </Grid>
-          <Grid item xs={12} >
-            <TextFieldContainerSimple 
-                fieldId={1}
-                fieldName={"FieldOne"}
-                fieldProps={fieldProps2}
-                disabled={false}
-                />
-          </Grid>
-          <div style={{padding: '25px'}}></div>
-          <Grid item xs={12} >
-            <Button 
-                color='primary' 
-                className={classes.button} 
-                onClick={onCreateField} 
-                variant="contained">Create Field</Button>
-          </Grid>
-          <div style={{padding: '25px'}}></div>
-          <Grid item xs={12} >
-            <StyledButton 
-                onClick={onCreateField} 
-                variant="contained">StylizedCreate Field</StyledButton>
-          </Grid>
-          <div style={{padding: '25px'}}></div>
-          <Grid item xs={12} >
-            <button className="button -inverted"
-            color="primary"
-                onClick={onCreateField} 
-                >KP-Button Create Field</button>
-          </Grid>
-			</Grid>
-        </div>
-    );
+
+    if(isLoading === true) {
+      console.log("MainView: Loading...");
+      return <Loading />
+    } else {
+      console.log("MainView: render()");
+
+      const sData = (sampleData) ? sampleData.data : {"data": "SAMPLE DATA"};
+      return (
+          <div>
+              <h2>select-test1</h2>
+              <h4>Main View</h4>
+          <Grid container >
+            <Grid item xs={12} >
+              {textComponents}
+            </Grid>
+            <Grid item xs={12} >
+              <TextFieldContainerSimple 
+                  fieldId={1}
+                  fieldName={"FieldOne"}
+                  fieldProps={fieldProps2}
+                  disabled={false}
+                  />
+            </Grid>
+            <div style={{padding: '25px'}}></div>
+            <Grid item xs={12} >
+              <Button 
+                  color='primary' 
+                  className={classes.button} 
+                  onClick={onCreateField} 
+                  variant="contained">Create Field</Button>
+            </Grid>
+            <div style={{padding: '25px'}}></div>
+            <Grid item xs={12} >
+              <StyledButton 
+                  onClick={onCreateField} 
+                  variant="contained">StylizedCreate Field</StyledButton>
+            </Grid>
+            <div style={{padding: '25px'}}></div>
+            <Grid item xs={12} >
+              <KpButton className="button -inverted"
+              color="primary"
+                  onClick={onGetData} 
+                  >KP-Button: Saga</KpButton>
+            </Grid>
+            <div style={{padding: '25px'}}></div>
+            <Grid item xs={12} >
+              <div>SampleData: {sData}</div>
+              </Grid>
+        </Grid>
+          </div>
+      );
+    }
 }
 
 MainView.propTypes = {

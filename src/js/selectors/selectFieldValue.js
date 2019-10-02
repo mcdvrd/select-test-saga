@@ -9,7 +9,6 @@
 
 
 const selectFieldValue = (state, fieldId) => state.fields.find((field) => {
- 
     return fieldId === field.id;
 });
 
